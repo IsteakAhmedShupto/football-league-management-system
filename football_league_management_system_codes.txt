@@ -1,0 +1,46 @@
+Create table teams(
+  team_no number(20),
+  team_name VARCHAR2(30),
+  coach VARCHAR2(30),
+  country VARCHAR2(30),
+  players NUMBER(10),
+  team_captain VARCHAR2(30),
+  primary key(team_no)
+);
+
+Create table players(
+  id NUMBER(10),
+  name VARCHAR2(30),
+  age NUMBER(10),
+  blood_group VARCHAR2(30),
+  playing_position VARCHAR2(30),
+  phone_number NUMBER(10),
+  team_no NUMBER(10),
+  FOREIGN KEY (team_no) REFERENCES teams(team_no),
+  primary key(id)
+);
+
+Create table injury_records (
+  id NUMBER(10),
+  description VARCHAR2(30),
+  date_of_injury VARCHAR2(30),
+  player_identity NUMBER(10),
+  FOREIGN KEY (player_identity) REFERENCES players (id),
+  PRIMARY KEY (id)
+);
+
+Create table match_status (
+  id NUMBER(10),
+  association VARCHAR2(30),
+  venue VARCHAR2(30),
+  result VARCHAR2(30),
+  date_of_match VARCHAR2(30),
+  team_no NUMBER(10),
+  FOREIGN KEY (team_no) REFERENCES teams (team_no),
+  player_identity NUMBER(10),
+  FOREIGN KEY (player_identity) REFERENCES players (id),
+  PRIMARY KEY (id)
+);
+
+
+
